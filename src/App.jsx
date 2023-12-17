@@ -11,10 +11,10 @@ import { useState } from "react";
 const initialStateTodos = [
 
   { id: 1, title: "complete online javascript", completed: true },
-  { id: 2, title: "go to the gym", completed: false },
+  { id: 2, title: "go to the gym", completed: true },
   { id: 3, title: "10 minutes meditation", completed: true },
-  { id: 4, title: "play tennis", completed: false },
-  { id: 5, title: "study programation", completed: false },
+  { id: 4, title: "play tennis", completed: true },
+  { id: 5, title: "study programation", completed: true },
 ]
 
 
@@ -38,8 +38,9 @@ const App = () => {
   }
 
   const updateTodo = (id) => {
-    setTodos(todos.map(
-      todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo))
   }
   const computedItemsLeft = todos.filter((todo) => !todo.completed).length;
 
@@ -50,7 +51,7 @@ const App = () => {
 
   const [filter, setFilter] = useState("active");
 
-const changeFilter=(filter)=>setFilter(filter)
+  const changeFilter = (filter) => setFilter(filter)
 
   const filteredTodos = () => {
 
@@ -72,7 +73,7 @@ const changeFilter=(filter)=>setFilter(filter)
 
   return (
     <div className="min-h-screen bg-gray-300  bg-[url('./assets/images/bg-mobile-light.jpg')] 
-    bg-no-repeat bg-contain">
+    bg-no-repeat bg-cover">
 
       <Header />
       <main className="container mx-auto mt-8 px-4 ">
@@ -83,7 +84,7 @@ const changeFilter=(filter)=>setFilter(filter)
 
         <TodoComputed computedItemsLeft={computedItemsLeft} clearCompleted={clearCompleted} />
 
-        <TodoFilter changeFilter={changeFilter}/>
+        <TodoFilter changeFilter={changeFilter} />
 
       </main >
 
